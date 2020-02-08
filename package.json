@@ -24,7 +24,8 @@
   "homepage": "https://github.com/jackmorrison12/pyplay#readme",
   "dependencies": {
     "codemirror": "^5.51.0",
-    "node-static": "^0.7.11"
+    "node-static": "^0.7.11",
+    "bootstrap": "4.4.1"
   },
   "devDependencies": {
     "@babel/core": "^7.8.4",
