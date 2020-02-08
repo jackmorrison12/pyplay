@@ -14,5 +14,3 @@ const editor = CodeMirror.fromTextArea(myTextarea, {
   lineNumbers: true,
   mode: "python"
 });
-
-document.write("Hello World from JavaScript");
