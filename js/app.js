@@ -1,7 +1,7 @@
-import CodeMirror from 'codemirror/lib/codemirror.js';
-import 'codemirror/mode/python/python.js'; 
+import CodeMirror from 'CodeMirror/lib/codemirror.js';
+import 'CodeMirror/mode/python/python.js'; 
 
-import styles from "../node_modules/CodeMirror/lib/codemirror.css";
+import styles from "CodeMirror/lib/codemirror.css";
 
 const myTextarea = document.getElementById("textarea");
 
