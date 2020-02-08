@@ -10,11 +10,21 @@ module.exports = {
     module: {
       rules: [
         {
-          test: /\.jsx$/,
+          test: /\.js$/,
           exclude: /node_modules/,
           use: {
             loader: "babel-loader"
           }
+        },
+        {
+          test: /\.css$/i,
+          use: [
+            {
+              loader: 'style-loader',
+              options: { injectType: 'singletonStyleTag' },
+            },
+            'css-loader'
+          ],
         }
       ]
     }
