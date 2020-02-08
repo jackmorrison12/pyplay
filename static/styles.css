@@ -8,3 +8,7 @@
     align-items: center;
     text-align: center;
 }
+
+.cm-s-monokai{
+    height: 100% !important;
+}
