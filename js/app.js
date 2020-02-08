@@ -16,3 +16,11 @@ const editor = CodeMirror.fromTextArea(myTextarea, {
   mode: "python",
   theme: "monokai"
 });
+
+console.log(document.getElementById("run"));
+
+document.getElementById("run").addEventListener("click", () => {
+   console.log(editor.getValue());
+   console.log(typeof editor.getValue());
+   eval(Sk.importMainWithBody("<stdin>", false, editor.getValue()));
+});
