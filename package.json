@@ -1,0 +1,22 @@
+{
+  "name": "pyplay",
+  "version": "1.0.0",
+  "description": "",
+  "main": "index.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/jackmorrison12/pyplay.git"
+  },
+  "author": "",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/jackmorrison12/pyplay/issues"
+  },
+  "homepage": "https://github.com/jackmorrison12/pyplay#readme",
+  "dependencies": {
+    "codemirror": "^5.51.0"
+  }
+}
