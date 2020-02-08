@@ -2,13 +2,35 @@
 <html>
   <head>
     <meta charset="utf8"/>
+    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.4.1/css/bootstrap.min.css" integrity="sha384-Vkoo8x4CGsO3+Hhxv8T/Q5PaXtkKtu6ug5TOeNV6gBiFeWPGFN9MuhOf23Q9Ifjh" crossorigin="anonymous">
+    <link rel="stylesheet" href="styles.css">
   </head>
   <body>
+    <nav class="navbar navbar-expand-sm bg-dark">
+
+      <!-- Links -->
+      <ul class="navbar-nav">
+        <a class="navbar-brand" href="#">
+          <img src="/images/logo.png" alt="Logo" style="width:30px;">
+        </a>
+        <li class="nav-item">
+          <a class="nav-link" href="#">Games</a>
+        </li>
+        <li class="nav-item">
+          <a class="nav-link" href="#">Leaderboard</a>
+        </li>
+        <li class="nav-item">
+          <a class="nav-link" href="#">Account</a>
+        </li>
+      </ul>
+    
+    </nav>
 
     <h1>PyPlay</h1>
-
-    <textarea id="textarea"></textarea>
-
-    <script src="/js/app.bundle.js"></script>
+    <div style="width: 50vw;">
+      <textarea id="textarea"></textarea>
+  
+      <script src="/js/app.bundle.js"></script>
+    </div>
   </body>
 </html> 
