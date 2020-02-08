@@ -4,3 +4,11 @@
 .nav-link:hover{
     color: #b0ac05;
 }
+.navbar-nav {
+    align-items: center;
+    text-align: center;
+}
+
+.cm-s-monokai{
+    height: 100% !important;
+}
