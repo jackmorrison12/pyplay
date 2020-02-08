@@ -2,7 +2,7 @@
   "name": "pyplay",
   "version": "1.0.0",
   "description": "",
-  "main": "index.js",
+  "main": "app.js",
   "scripts": {
     "test": "echo \"Error: no test specified\" && exit 1"
   },
@@ -17,6 +17,7 @@
   },
   "homepage": "https://github.com/jackmorrison12/pyplay#readme",
   "dependencies": {
-    "codemirror": "^5.51.0"
+    "codemirror": "^5.51.0",
+    "node-static": "^0.7.11"
   }
 }
