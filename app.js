@@ -6,4 +6,4 @@ require('http').createServer(function (request, response) {
     request.addListener('end', function () {
         file.serve(request, response);
     }).resume();
-}).listen(process.env.PORT || 8000);
+}).listen(process.env.PORT);
