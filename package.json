@@ -3,13 +3,14 @@
   "version": "1.0.0",
   "description": "",
   "main": "app.js",
-  "engines":{
+  "engines": {
     "npm": "6.10.3",
     "node": "12.10.0"
   },
   "scripts": {
     "test": "echo \"Error: no test specified\" && exit 1",
-    "start": "node app.js"
+    "start": "node app.js",
+    "build": "webpack"
   },
   "repository": {
     "type": "git",
@@ -24,5 +25,12 @@
   "dependencies": {
     "codemirror": "^5.51.0",
     "node-static": "^0.7.11"
+  },
+  "devDependencies": {
+    "@babel/core": "^7.8.4",
+    "@babel/preset-env": "^7.8.4",
+    "babel-loader": "^8.0.6",
+    "webpack": "^4.41.5",
+    "webpack-cli": "^3.3.10"
   }
 }
