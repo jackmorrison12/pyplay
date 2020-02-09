@@ -67,6 +67,47 @@ Canvas.prototype.fillRect = new Sk.builtin.func(function (self, x, y, width, hei
   self.ctx.fillRect(x_, y_, width_, height_);
 });
 
+Canvas.prototype.rect = new Sk.builtin.func(function (self, x, y, width, height, colour, thickness) {
+  Sk.builtin.pyCheckArgsLen("fillRect", arguments.length, 7, 7);
+  Sk.builtin.pyCheckType("x", "number", Sk.builtin.checkNumber(x));
+  Sk.builtin.pyCheckType("y", "number", Sk.builtin.checkNumber(y));
+  Sk.builtin.pyCheckType("width", "number", Sk.builtin.checkNumber(width));
+  Sk.builtin.pyCheckType("height", "number", Sk.builtin.checkNumber(height));
+  Sk.builtin.pyCheckType("colour", "string", Sk.builtin.checkString(colour));
+  Sk.builtin.pyCheckType("thickness", "number", Sk.builtin.checkNumber(thickness));
+  var x_ = Sk.builtin.asnum$(x);
+  var y_ = Sk.builtin.asnum$(y);
+  var width_ = Sk.builtin.asnum$(width);
+  var height_ = Sk.builtin.asnum$(height);
+  var thickness_ = Sk.builtin.asnum$(thickness);
+  self.ctx.strokeStyle = colour.$jsstr();
+  self.ctx.lineWidth = thickness_.toString();
+  self.ctx.beginPath();
+  self.ctx.rect(x_, y_, width_, height_);
+  self.ctx.stroke();
+});
+
+Canvas.prototype.line = new Sk.builtin.func(function(self, x0, y0, x1, y1, colour, thickness) {
+  Sk.builtin.pyCheckArgsLen("line", arguments.length, 7, 7);
+  Sk.builtin.pyCheckType("x0", "number", Sk.builtin.checkNumber(x0));
+  Sk.builtin.pyCheckType("y0", "number", Sk.builtin.checkNumber(y0));
+  Sk.builtin.pyCheckType("x1", "number", Sk.builtin.checkNumber(x1));
+  Sk.builtin.pyCheckType("y1", "number", Sk.builtin.checkNumber(y1));
+  Sk.builtin.pyCheckType("colour", "string", Sk.builtin.checkString(colour));
+  Sk.builtin.pyCheckType("thickness", "number", Sk.builtin.checkNumber(thickness));
+  var x0_ = Sk.builtin.asnum$(x0);
+  var y0_ = Sk.builtin.asnum$(y0);
+  var x1_ = Sk.builtin.asnum$(x1);
+  var y1_ = Sk.builtin.asnum$(y1);
+  var thickness_ = Sk.builtin.asnum$(thickness);
+  self.ctx.strokeStyle = colour.$jsstr();
+  self.ctx.lineWidth = thickness_.toString();
+  self.ctx.beginPath();
+  self.ctx.moveTo(x0_, y0_);
+  self.ctx.lineTo(x1_, y1_);
+  self.ctx.stroke();
+});
+
 Canvas.prototype.clear = new Sk.builtin.func(function (self) {
   Sk.builtin.pyCheckArgsLen("clear", arguments.length, 1, 1);
   self.ctx.clearRect(0, 0, 400, 400);
@@ -80,6 +121,26 @@ Sk.builtins["getCanvas"] = new Sk.builtin.func(function () {
 
   return new Canvas(document.getElementById("canvas"));
 });
+
+function setupCanvas(canvas) {
+  // Get the device pixel ratio, falling back to 1.
+  var dpr = window.devicePixelRatio || 1;
+  // Get the size of the canvas in CSS pixels.
+  var rect = {width: 400, height: 400};
+  // Give the canvas pixel dimensions of their CSS
+  // size * the device pixel ratio.
+  canvas.width = rect.width * dpr;
+  canvas.height = rect.height * dpr;
+  canvas.style.width = rect.width.toString() + "px";
+  canvas.style.height = rect.height.toString() + "px";
+  var ctx = canvas.getContext('2d');
+  // Scale all drawing operations by the dpr, so you
+  // don't have to worry about the difference.
+  ctx.scale(dpr, dpr);
+  return ctx;
+}
+
+setupCanvas(document.getElementById("canvas"));
 
 var handler2;
 
