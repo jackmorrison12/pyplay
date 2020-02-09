@@ -21,3 +21,9 @@ canvas {
 .error {
   color: red;
 }
+
+.btn-yellow{
+  color: #212529;
+  background-color: #fff808;
+  border-color: #fff808;
+}
