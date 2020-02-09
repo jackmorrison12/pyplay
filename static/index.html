@@ -8,7 +8,7 @@
     <script src="/builtin.js"></script>
   </head>
   <body>
-    <nav class="navbar navbar-expand-sm bg-dark">
+    <nav class="navbar navbar-expand-sm" style="background-color: #272822;">
       <!-- Links -->
       <ul class="navbar-nav">
         <a class="navbar-brand" href="#">
@@ -26,13 +26,14 @@
       </ul>
     
     </nav>
-    <div style="width: 100vw; height: calc(100vh - 75.78px);display: flex;">
+    <div style="width: 100vw; height: calc(100vh - 128.68px);display: flex;">
       <div style="width: 50%; float:left;">
 
         <textarea id="textarea"></textarea>
-
-        <button class = "btn btn-warning m-2" id="run">Run</button>
-        <button class = "btn btn-warning m-2" id="stop">Stop</button>
+        <div style="background-color: #272822;">
+          <button class = "btn btn-yellow m-2" id="run">Run</button>
+          <button class = "btn btn-yellow m-2" id="stop">Stop</button>
+        </div>
     
       </div>
       <div style="width: 50%;">

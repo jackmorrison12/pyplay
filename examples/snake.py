@@ -16,6 +16,10 @@ eat = Audio("eat.wav")
 
 print(colours["red"])
 
+# Define the Snake as aa array of tuples
+snake = [(0, 0), (1, 0), (2, 0)]
+
+# Wrtie a function to put the food at a random point on the map
 def randpos():
   pos = None
   while True:
@@ -28,6 +32,7 @@ def randpos():
 
 fruit = randpos()
 
+# Write a function to move the snake based on the input
 def event():
   global lost, snake, fruit, direction, n_direction, a
   direction = n_direction
@@ -65,9 +70,9 @@ def event():
 
 setInterval(150, event)
 
+# Write a function to track where the user is clicking 
 def handler(t):
   global direction, n_direction
-  print(direction)
   if t == 38 and direction != 1:
     n_direction = 3
   elif t == 40 and direction != 3:
