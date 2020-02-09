@@ -6,8 +6,10 @@ n_direction = 0
 canvas = getCanvas()
 # 0 right, 1 down, 2 left, 3 up
 
+# Define the Snake as aa array of tuples
 snake = [(0, 0), (1, 0), (2, 0)]
 
+# Wrtie a function to put the food at a random point on the map
 def randpos():
   pos = None
   while True:
@@ -20,6 +22,7 @@ def randpos():
 
 fruit = randpos()
 
+# Write a function to move the snake based on the input
 def event():
   global lost, snake, fruit, direction, n_direction
   direction = n_direction
@@ -54,6 +57,7 @@ def event():
     
 setInterval(150, event)
 
+# Write a function to track where the user is clicking 
 def handler(t):
   global direction, n_direction
   print(direction)
