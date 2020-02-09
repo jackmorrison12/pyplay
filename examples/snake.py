@@ -5,11 +5,29 @@ direction = 0
 n_direction = 0
 canvas = getCanvas()
 # 0 right, 1 down, 2 left, 3 up
+"""
+====================================
 
-# Define the Snake as aa array of tuples
+STEP 1: Define the Snake as an array of tuples
+
+Hint: each tuple has 2 elements
+
+====================================
+
+"""
+
 snake = [(0, 0), (1, 0), (2, 0)]
 
-# Wrtie a function to put the food at a random point on the map
+"""
+====================================
+
+STEP 2: Wrtie a function to put the fruit at a random point on the map
+
+Hint: The fruit should be placed at random locations
+
+====================================
+"""
+
 def randpos():
   pos = None
   while True:
@@ -22,7 +40,17 @@ def randpos():
 
 fruit = randpos()
 
-# Write a function to move the snake based on the input
+"""
+====================================
+
+STEP 3: Write a function to move the snake based on the input
+
+Hint: When the snake moves, rectangle at the head moves forward by one
+but rectangle at tail also gets deleted
+
+====================================
+"""
+
 def event():
   global lost, snake, fruit, direction, n_direction
   direction = n_direction
@@ -57,7 +85,14 @@ def event():
     
 setInterval(150, event)
 
-# Write a function to track where the user is clicking 
+"""
+====================================
+
+STEP 4: Write a function to track where the user is clicking 
+
+====================================
+"""
+
 def handler(t):
   global direction, n_direction
   if t == 38 and direction != 1:
