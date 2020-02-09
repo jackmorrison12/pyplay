@@ -4,20 +4,6 @@ import 'codemirror/theme/monokai.css';
 
 import styles from "codemirror/lib/codemirror.css";
 
-/*function draw(canvas) {
-  console.log("hello")
-  console.log(canvas)
-  if (canvas.getContext) {
-  var ctx = canvas.getContext('2d');
-
-  ctx.fillStyle = 'rgb(200, 0, 0)';
-  ctx.fillRect(10, 10, 50, 50);
-
-  ctx.fillStyle = 'rgba(0, 0, 200, 0.5)';
-  ctx.fillRect(30, 30, 50, 50);
-  }
-}*/
-
 var cons = document.getElementById("console");
 
 function builtinRead(x) {
@@ -40,6 +26,31 @@ const Canvas = function (el) {
 };
 
 Sk.abstr.setUpInheritance("Canvas", Canvas, Sk.builtin.object);
+
+var audios = [];
+
+Sk.builtins.Audio = function(src) {
+  if (!(this instanceof Sk.builtins.Audio)) {
+    var o = Object.create(Sk.builtins.Audio.prototype);
+    o.constructor.apply(o, arguments);
+    return o;
+  }
+
+  Sk.builtin.pyCheckArgsLen("Audio", arguments.length, 1, 1);
+  Sk.builtin.pyCheckType("src", "string", Sk.builtin.checkString(src));
+  this.audio = new Audio(src.$jsstr());
+  audios.push(this.audio);
+}
+
+Sk.abstr.setUpInheritance("Audio", Sk.builtins.Audio, Sk.builtin.object);
+
+Sk.builtins.Audio.prototype.play = new Sk.builtin.func(function(self) {
+  self.audio.play();
+});
+
+Sk.builtins.Audio.prototype.pause = new Sk.builtin.func(function(self) {
+  self.audio.pause();
+});
 
 Canvas.prototype.fillRect = new Sk.builtin.func(function (self, x, y, width, height, colour) {
   Sk.builtin.pyCheckArgsLen("fillRect", arguments.length, 6, 6);
@@ -130,6 +141,8 @@ if (v) {
 const resetState = () => {
   handler = null;
   clearInterval(handler2);
+  audios.forEach(t => t.pause());
+  audios = [];
 }
 
 const asyncEval = function(func, args) {

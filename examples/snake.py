@@ -5,8 +5,16 @@ direction = 0
 n_direction = 0
 canvas = getCanvas()
 # 0 right, 1 down, 2 left, 3 up
-
+print("hi")
 snake = [(0, 0), (1, 0), (2, 0)]
+
+ap = Audio("music.m4a")
+ap.play()
+
+die = Audio("die.wav")
+eat = Audio("eat.wav")
+
+print(colours["red"])
 
 def randpos():
   pos = None
@@ -21,7 +29,7 @@ def randpos():
 fruit = randpos()
 
 def event():
-  global lost, snake, fruit, direction, n_direction
+  global lost, snake, fruit, direction, n_direction, a
   direction = n_direction
   if lost:
     return
@@ -34,24 +42,27 @@ def event():
     x -= 1
   else:
     y -= 1
-    
+
   npos = (x, y)
   if x < 0 or x >= 40 or y < 0 or y >= 40 or (npos in snake and npos != snake[0]):
     lost = True
+    ap.pause()
+    die.play()
     return
 
   snake.append(npos)
-  
+
   if npos == fruit:
-  	fruit = randpos()
+    fruit = randpos()
+    eat.play()
   else:
-  	snake.pop(0)
-  
+    snake.pop(0)
+
   canvas.clear()
   for (a, b) in snake:
-    canvas.fillRect(a * 10, b * 10, 10, 10, '#00ff00')
-  canvas.fillRect(fruit[0] * 10, fruit[1] * 10, 10, 10, '#ffff00')
-    
+    canvas.fillRect(a * 10, b * 10, 10, 10, colours["green"])
+  canvas.fillRect(fruit[0] * 10, fruit[1] * 10, 10, 10, colours["yellow"])
+
 setInterval(150, event)
 
 def handler(t):
