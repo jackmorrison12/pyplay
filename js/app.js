@@ -91,6 +91,13 @@ Sk.builtins["setKeyHandler"] = new Sk.builtin.func(function(func) {
   handler = func;
 });
 
+Sk.builtins["colours"] = Sk.ffi.remapToPy({
+  red: "#FF0000",
+  green: "#00FF00",
+  blue: "#0000FF",
+  yellow: "#FFFF00"
+});
+
 window.addEventListener("keydown", (e) => {
   if (handler && e.target == document.body) {
     asyncEval(handler, [Sk.builtin.int_(e.keyCode)]);
@@ -130,7 +137,7 @@ const asyncEval = function(func, args) {
      Sk.misceval.callsimArray(func, args);       
   } catch(e) {
      resetState();
-     cons.innerHTML += e.toString() + "\n";
+     addError(e.toString());
   }
 }
 
