@@ -170,6 +170,10 @@ document.getElementById("run").addEventListener("click", () => {
    resetState();
    console.log(editor.getValue());
    console.log(typeof editor.getValue());
+   if (document.activeElement instanceof HTMLElement) {
+     document.activeElement.blur();
+   }
+
    try {
      eval(Sk.importMainWithBody("<stdin>", false, editor.getValue()));
    } catch (e) {
