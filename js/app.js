@@ -18,6 +18,8 @@ import styles from "codemirror/lib/codemirror.css";
   }
 }*/
 
+var cons = document.getElementById("console");
+
 function builtinRead(x) {
     if (Sk.builtinFiles === undefined || Sk.builtinFiles["files"][x] === undefined)
         throw "File not found: '" + x + "'";
@@ -75,7 +77,7 @@ Sk.builtins["setInterval"] = new Sk.builtin.func(function(interval, func) {
   console.log(Sk.builtin.asnum$(interval));
   clearInterval(handler2);
   handler2 = setInterval(() => {
-    Sk.misceval.callsimArray(func, []);
+    asyncEval(func, []);
   }, Sk.builtin.asnum$(interval));
 });
 
@@ -89,7 +91,7 @@ Sk.builtins["setKeyHandler"] = new Sk.builtin.func(function(func) {
 
 window.addEventListener("keydown", (e) => {
   if (handler && e.target == document.body) {
-    Sk.misceval.callsimArray(handler, [Sk.builtin.int_(e.keyCode)]);
+    asyncEval(handler, [Sk.builtin.int_(e.keyCode)]);
     //handler.func_code(Sk.builtin.int_(e.keyCode));
   }
 });
@@ -107,15 +109,50 @@ const editor = CodeMirror.fromTextArea(myTextarea, {
   theme: "monokai"
 });
 
+editor.on("change", () => {
+  localStorage.setItem("saved", editor.getValue());
+});
+
+var v = localStorage.getItem("saved");
+if (v) {
+  editor.setValue(v);
+}
+
+const resetState = () => {
+  handler = null;
+  clearInterval(handler2);
+}
+
+const asyncEval = function(func, args) {
+  try {
+     Sk.misceval.callsimArray(func, args);       
+  } catch(e) {
+     resetState();
+     cons.innerHTML += e.toString() + "\n";
+  }
+}
+
+const addError = function(str) {
+  cons.innerHTML += '<span class="error">' + str + '</span><br/>';
+}
+
 console.log(document.getElementById("run"));
 
+document.getElementById("stop").addEventListener("click", () => {
+  resetState();
+});
+
 document.getElementById("run").addEventListener("click", () => {
+   cons.innerHTML = "";
    document.getElementById("canvas").getContext('2d').clearRect(0, 0, 400, 400);
-   handler = null;
-   clearInterval(handler2);
+   resetState();
    console.log(editor.getValue());
    console.log(typeof editor.getValue());
-   eval(Sk.importMainWithBody("<stdin>", false, editor.getValue()));
+   try {
+     eval(Sk.importMainWithBody("<stdin>", false, editor.getValue()));
+   } catch (e) {
+      addError(e.toString());
+   }
 });
 
 /*const canvas = document.getElementById('canvas');
