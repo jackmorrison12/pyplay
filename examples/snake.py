@@ -16,7 +16,6 @@ Hint: each tuple has 2 elements
 
 """
 
-print("hi")
 snake = [(0, 0), (1, 0), (2, 0)]
 
 ap = Audio("music.m4a")
@@ -24,8 +23,6 @@ ap.play()
 
 die = Audio("die.wav")
 eat = Audio("eat.wav")
-
-print(colours["red"])
 
 snake = [(0, 0), (1, 0), (2, 0)]
 
