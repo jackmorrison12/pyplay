@@ -12,3 +12,8 @@
 .cm-s-monokai{
     height: 100% !important;
 }
+
+canvas {
+  border: 1px solid red;
+  margin: 10px;
+}
