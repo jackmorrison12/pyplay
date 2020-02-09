@@ -60,7 +60,6 @@ setInterval(150, event)
 # Write a function to track where the user is clicking 
 def handler(t):
   global direction, n_direction
-  print(direction)
   if t == 38 and direction != 1:
     n_direction = 3
   elif t == 40 and direction != 3:
