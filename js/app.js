@@ -26,7 +26,9 @@ function builtinRead(x) {
     return Sk.builtinFiles["files"][x];
 }
 
-Sk.configure({read:builtinRead, __future__: Sk.python3});
+Sk.configure({read:builtinRead, __future__: Sk.python3, output: function(f) {
+  cons.innerHTML += f.replace(/(?:\r\n|\r|\n)/g, '<br>');
+}});
 
 
 const Canvas = function (el) {
